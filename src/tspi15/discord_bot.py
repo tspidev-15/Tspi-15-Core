@@ -85,9 +85,7 @@ def parse_bot_source(source):
                 f"Line {number}: only one reply is supported per command."
             )
 
-        match = re.fullmatch(
-            r'reply\s+("(?:\\.|[^"\\])*")', text
-        )
+        match = re.fullmatch(r'reply\s+("(?:\\.|[^"\\])*")', text)
         if not match:
             raise DiscordScriptError(
                 f'Line {number}: expected reply "message".'
@@ -117,18 +115,17 @@ def run_bot(bot_name, commands, token):
     client = discord.Client(intents=discord.Intents.default())
     tree = app_commands.CommandTree(client)
 
-    for name, reply_text in commands:
-        async def callback(
-            interaction: discord.Interaction,
-            message=reply_text,
-        ):
-            await interaction.response.send_message(message)
+    def make_callback(reply_text):
+        async def callback(interaction: discord.Interaction):
+            await interaction.response.send_message(reply_text)
+        return callback
 
+    for name, reply_text in commands:
         tree.add_command(
             app_commands.Command(
                 name=name,
                 description=f"TSPI-15 command {name}",
-                callback=callback,
+                callback=make_callback(reply_text),
             )
         )
 
