@@ -1,1 +1,7 @@
-# p
+
+# TSPI-15 — First example
+# Draft syntax, not executable yet
+
+variable name = "Alex"
+show "Hello from TSPI-15!"
+show name
