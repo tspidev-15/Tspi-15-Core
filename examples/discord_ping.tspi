@@ -1,0 +1,7 @@
+
+# Example TSPI-15 Discord bot
+
+bot "TSPI Bot"
+
+command "ping":
+    reply "Pong!"
