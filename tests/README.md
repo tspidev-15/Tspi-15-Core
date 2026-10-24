@@ -1,13 +1,11 @@
-
 # TSPI-15 Tests
 
-This directory will contain tests for the TSPI-15 language.
+Automated tests are in `test_interpreter.py` and use Python's standard `unittest` library.
 
-Planned tests:
+Run from the repository root:
 
-- Syntax validation
-- Variable declarations
-- Output statements
-- Error handling
+~~~sh
+python -m unittest discover -s tests -v
+~~~
 
-Status: tests have not been implemented yet.
+The suite covers variables, output, arithmetic, conversions, comparisons, conditions, redeclaration, uninitialized variables, functions, errors, escapes, comments, and indentation.
