@@ -1,7 +1,18 @@
+# TSPI-15 v0.1 — hello.tspi
 
-# TSPI-15 — First example
-# Draft syntax, not executable yet
-
-variable name = "Alex"
+var name = "Alex"
 show "Hello from TSPI-15!"
 show name
+
+var score = 10 + "5"
+show score
+
+when score >= 15:
+    show "Condition works"
+otherwise:
+    show "Condition did not match"
+
+function get_score:
+    return score
+
+show get_score
