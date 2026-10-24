@@ -1,79 +1,56 @@
-# TSPI-15 Core
 
-TSPI-15 is an experimental, beginner-friendly programming language with a dedicated Python interpreter. Version 0.1 focuses on readable syntax, basic expressions, conditions, functions, and clear errors.
+## Discord Bots (Experimental)
 
-## Requirements
+TSPI-15 includes an experimental integration for creating simple
+Discord slash commands using `.tspi` files.
+
+### Requirements
 
 - Python 3.10 or newer
-- No third-party runtime dependencies
+- A Discord application and bot token
 
-## Install locally
+### Installation
 
-From the repository root:
+Install TSPI-15 with Discord support:
 
-~~~sh
-python -m pip install -e .
-~~~
+```bash
+python -m pip install -e ".[discord]"
+```
 
-## Run a program
+### Example
 
-~~~sh
-tspi15 examples/hello.tspi
-~~~
+Create a file named `examples/discord_ping.tspi`:
 
-Or without installing the command:
+```text
+bot "TSPI Bot"
 
-~~~sh
-PYTHONPATH=src python -m tspi15.cli examples/hello.tspi
-~~~
+command "ping":
+    reply "Pong!"
+```
 
-## Quick example
+### Run the bot
 
-~~~tspi
-var name = "Alex"
-show "Hello, " + name
+Set your Discord bot token in an environment variable:
 
-var score = 10 + "5"
-show score
+```bash
+export DISCORD_TOKEN="YOUR_BOT_TOKEN"
+```
 
-when score >= 15:
-    show "Passed"
-otherwise:
-    show "Try again"
+Then run:
 
-function get_score:
-    return score
+```bash
+tspi15-discord examples/discord_ping.tspi
+```
 
-show get_score
-~~~
+Keep the terminal running while you use the bot.
 
-## Implemented in v0.1
+### Security
 
-- Variables with inferred or explicit types: `number`, `text`, `boolean`
-- `show` output
-- Arithmetic, comparisons, `and`, and `or`
-- Automatic conversions where defined in `docs/SYNTAX.md`
-- `when` / `otherwise` blocks with four-space indentation
-- Functions without parameters and value-returning `return`
-- Global variables; redeclaration with `var` replaces the previous value and type
-- Comments and escapes: `\n`, `\t`, `\"`, `\\`
-- Line-numbered syntax and runtime errors
-- Automated tests using Python's standard `unittest`
+Never publish your Discord bot token in GitHub or include it
+in a `.tspi` source file.
 
-## Limitations
+### Current limitations
 
-No user input, loops, function parameters, local scopes, or multi-error recovery. Every function call must execute a value-returning `return`; otherwise it raises a runtime error.
-
-## Run tests
-
-~~~sh
-python -m unittest discover -s tests -v
-~~~
-
-## Project status
-
-This is an early v0.1 implementation; syntax and behavior may evolve as testing continues.
-
-## License
-
-No open-source license has been granted. Unless a license is added, all rights are reserved by default.
+This integration currently supports slash commands with fixed text
+replies. It does not yet support arbitrary TSPI-15 statements inside
+Discord commands, moderation, tickets, or role management.
