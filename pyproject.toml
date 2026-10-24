@@ -1,4 +1,3 @@
-
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
@@ -6,8 +5,13 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tspi15"
 version = "0.1.0"
-description = "The TSPI-15 programming language"
+description = "The TSPI-15 v0.1 beginner-friendly programming language interpreter"
+readme = "README.md"
 requires-python = ">=3.10"
+license = { text = "All rights reserved" }
+
+[project.scripts]
+tspi15 = "tspi15.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
