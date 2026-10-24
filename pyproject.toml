@@ -1,3 +1,4 @@
+
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
@@ -9,9 +10,14 @@ description = "The TSPI-15 v0.1 beginner-friendly programming language interpret
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "All rights reserved" }
+dependencies = []
+
+[project.optional-dependencies]
+discord = ["discord.py>=2.4,<3"]
 
 [project.scripts]
 tspi15 = "tspi15.cli:main"
+tspi15-discord = "tspi15.discord_bot:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
